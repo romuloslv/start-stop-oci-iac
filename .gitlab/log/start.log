@@ -135,7 +135,7 @@ ok: [localhost] =>
   - xxxxxxxxxxxxxx
   - xxxxxxxxxxxxxx
   - xxxxxxxxxxxxxx
-TASK [Update bandwidth(s) to 100Mbps in SP] *************************************
+TASK [Update bandwidth(s) to 200Mbps in SP] *************************************
 changed: [localhost] => (item=xxxxxxxxxxxxxx)
 changed: [localhost] => (item=xxxxxxxxxxxxxx)
 changed: [localhost] => (item=xxxxxxxxxxxxxx)
