@@ -1,0 +1,11 @@
+sshpass=1.06-1
+libaio1=0.3.112-5
+unzip=6.0-25ubuntu1.1
+sudo=1.8.31-1ubuntu1.4
+curl=7.68.0-1ubuntu2.16
+jq=1.6-1ubuntu0.20.04.1
+git=1:2.25.1-1ubuntu3.10
+gnupg2=2.2.19-3ubuntu2.2
+vim=2:8.1.2269-1ubuntu5.11
+python3-pip=20.0.2-5ubuntu1.8
+openssh-client=1:8.2p1-4ubuntu0.5

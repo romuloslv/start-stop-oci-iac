@@ -1,0 +1,135 @@
+start resources in @(dev|qa|uat|stg)
+PLAY [localhost] ***************************************************************
+TASK [List tag(s) namespace in SP] *********************************************
+ok: [localhost]
+TASK [List tag(s) in SP] *******************************************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [List db system(s) that are AVAILABLE in SP] ******************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [List db node(s) that are AVAILABLE in SP] ********************************
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [List string connection(s) in SP] *****************************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TASK [stop database(s) in SP] **************************************************
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+TASK [Get a database user(qa) in vault from SP] ********************************
+skipping: [localhost]
+TASK [set_fact] ****************************************************************
+skipping: [localhost]
+TASK [Get a database password(qa) in vault from SP] ****************************
+skipping: [localhost]
+TASK [set_fact] ****************************************************************
+skipping: [localhost]
+TASK [Wait for connection(s) on database node(s) in SP] ************************
+skipping: [localhost] => (item=xxxxxxxxxxxxxx) 
+skipping: [localhost] => (item=xxxxxxxxxxxxxx) 
+skipping: [localhost] => (item=xxxxxxxxxxxxxx) 
+skipping: [localhost] => (item=xxxxxxxxxxxxxx) 
+TASK [Check the response query in database node(s) on the SP] ******************
+skipping: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']) 
+skipping: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']) 
+skipping: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']) 
+skipping: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx']) 
+TASK [debug] *******************************************************************
+skipping: [localhost]
+TASK [List instance(s) that are RUNNING in SP] *********************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [stop instance(s) in SP] **************************************************
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+TASK [List load balancer(s) that are ACTIVE in SP] *****************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [Update bandwidth(s) to 10Mbps in SP] *************************************
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+PLAY RECAP *********************************************************************
+localhost                  : ok=21   changed=3    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0   
+Cleaning up project directory and file based variables
+Job succeeded

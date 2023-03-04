@@ -1,0 +1,154 @@
+start resources in @(dev|qa|uat|stg)
+PLAY [localhost] ***************************************************************
+TASK [List tag(s) namespace in SP] *********************************************
+ok: [localhost]
+TASK [List tag(s) in SP] *******************************************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [List db system(s) that are AVAILABLE in SP] ******************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [List db node(s) that are STOPPED in SP] **********************************
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+ok: [localhost] => (item=ocid1.dbsystem.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [List string connection(s) in SP] *****************************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:1521/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TASK [start database(s) in SP] *************************************************
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.dbnode.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+TASK [Get a database user(qa) in vault from SP] ********************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [Get a database password(qa) in vault from SP] ****************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [Wait for connection(s) on database node(s) in SP] ************************
+FAILED - RETRYING: [localhost]: Wait for connection(s) on database node(s) in SP (30 retries left).
+FAILED - RETRYING: [localhost]: Wait for connection(s) on database node(s) in SP (29 retries left).
+FAILED - RETRYING: [localhost]: Wait for connection(s) on database node(s) in SP (28 retries left).
+FAILED - RETRYING: [localhost]: Wait for connection(s) on database node(s) in SP (27 retries left).
+FAILED - RETRYING: [localhost]: Wait for connection(s) on database node(s) in SP (26 retries left).
+FAILED - RETRYING: [localhost]: Wait for connection(s) on database node(s) in SP (25 retries left).
+ok: [localhost] => (item=xxxxxxxxxxxxxx)
+ok: [localhost] => (item=xxxxxxxxxxxxxx)
+ok: [localhost] => (item=xxxxxxxxxxxxxx)
+ok: [localhost] => (item=xxxxxxxxxxxxxx)
+TASK [Check the response query in database node(s) on the SP] ******************
+FAILED - RETRYING: [localhost]: Check the response query in database node(s) on the SP (30 retries left).
+FAILED - RETRYING: [localhost]: Check the response query in database node(s) on the SP (29 retries left).
+FAILED - RETRYING: [localhost]: Check the response query in database node(s) on the SP (28 retries left).
+FAILED - RETRYING: [localhost]: Check the response query in database node(s) on the SP (27 retries left).
+FAILED - RETRYING: [localhost]: Check the response query in database node(s) on the SP (26 retries left).
+FAILED - RETRYING: [localhost]: Check the response query in database node(s) on the SP (25 retries left).
+ok: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'])
+ok: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'])
+ok: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'])
+ok: [localhost] => (item=['xxxxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'])
+TASK [debug] *******************************************************************
+ok: [localhost] => (item=03-mar-2023 08:04:51) => 
+  msg: 03-mar-2023 08:04:51
+ok: [localhost] => (item=03-mar-2023 08:05:33) => 
+  msg: 03-mar-2023 08:05:33
+ok: [localhost] => (item=03-mar-2023 08:05:35) => 
+  msg: 03-mar-2023 08:05:35
+ok: [localhost] => (item=03-mar-2023 08:05:35) => 
+  msg: 03-mar-2023 08:05:35
+TASK [List instance(s) that are STOPPED in SP] *********************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [start instance(s) in SP] *************************************************
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+changed: [localhost] => (item=ocid1.instance.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)
+TASK [List load balancer(s) that are ACTIVE in SP] *****************************
+ok: [localhost]
+TASK [set_fact] ****************************************************************
+ok: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => 
+  msg:
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+  - xxxxxxxxxxxxxx
+TASK [Update bandwidth(s) to 100Mbps in SP] *************************************
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+changed: [localhost] => (item=xxxxxxxxxxxxxx)
+PLAY RECAP *********************************************************************
+localhost                  : ok=28   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+Cleaning up project directory and file based variables
+Job succeeded

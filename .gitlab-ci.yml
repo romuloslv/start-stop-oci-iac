@@ -1,0 +1,11 @@
+variables:
+  ANSIBLE_FORCE_COLOR: "True"
+  ANSIBLE_STDOUT_CALLBACK: "yaml"
+  ANSIBLE_LOCALHOST_WARNING: "False"
+  ANSIBLE_INVENTORY_UNPARSED_WARNING: "False"
+  OCI_USE_NAME_AS_IDENTIFIER: "True"
+
+stages: [reload]
+
+include:
+  - local: .gitlab/ci/job_call.yml

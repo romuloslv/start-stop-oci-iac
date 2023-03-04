@@ -1,0 +1,209 @@
+- hosts: localhost
+  gather_facts: no
+  collections:
+    - oracle.oci
+    - community.general
+    - ari_stark.ansible_oracle_modules
+  vars:
+    father_compartment_id_sp: ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    compartment_id_sp: ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    vault_id_sp: ocid1.vault.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  tasks:
+    # Tags ==============================================================================================
+    - name: List tag(s) namespace in SP
+      oci_identity_tag_namespace_facts:
+        compartment_id: "{{ father_compartment_id_sp }}"
+        lifecycle_state: ACTIVE
+      register: result_namespaces
+
+    - name: List tag(s) in SP
+      oci_identity_tag_facts:
+        tag_namespace_id: "{{ result_namespaces.tag_namespaces[0].id }}"
+        lifecycle_state: ACTIVE
+      register: result_tags
+
+    - set_fact:
+        tag_grp: "defined_tags.{{ result_namespaces.tag_namespaces[0].name }}.{{ result_tags.tags[0].name }}"
+
+    # Databases ==========================================================================================
+    - name: "List db system(s) that are AVAILABLE in SP"
+      oci_database_db_system_facts:
+        compartment_id: "{{ compartment_id_sp }}"
+        lifecycle_state: "AVAILABLE"
+      register: result_dbsystems
+
+    - set_fact:
+        filtered_dbsystems: "{{ result_dbsystems.db_systems
+                              | selectattr(tag_grp, 'defined')
+                              | selectattr(tag_grp, 'in', lookup('env', 'ENVS')
+                              | default([]))
+                              | rejectattr(tag_grp, 'match', '^AnsibleUndefined$')
+                              | list }}"
+
+    - debug:
+        msg: "{{ filtered_dbsystems | map(attribute='display_name') | list | sort | lower }}"
+      when: filtered_dbsystems | length > 0
+
+    - name: "List db node(s) that are {{ lookup('env', 'ANSIBLE_STATE_DB') }} in SP"
+      oci_database_db_node_facts:
+        compartment_id: "{{ compartment_id_sp }}"
+        lifecycle_state: "{{ lookup('env', 'ANSIBLE_STATE_DB') }}"
+        db_system_id: "{{ item }}"
+      register: result_nodes
+      loop: "{{ filtered_dbsystems | map(attribute='id') | list }}"
+
+    - set_fact:
+        filtered_dbnodes: "{{ result_nodes.results | map(attribute='db_nodes') | flatten | list }}"
+
+    - debug:
+        msg: "{{ filtered_dbnodes | map(attribute='hostname') | list | sort | lower }}"
+      when: filtered_dbnodes | length > 0
+
+    - name: "List string connection(s) in SP"
+      oci_database_pluggable_database_facts:
+        compartment_id: "{{ compartment_id_sp }}"
+        lifecycle_state: "AVAILABLE"
+      register: result_pdb
+
+    - set_fact:
+        filtered_pdb: "{{ result_pdb.pluggable_databases
+                        | selectattr(tag_grp, 'defined')
+                        | selectattr(tag_grp, 'in', lookup('env', 'ENVS')
+                        | default([]))
+                        | rejectattr(tag_grp, 'match', '^AnsibleUndefined$')
+                        | list }}"
+
+    - debug:
+        msg: "{{ filtered_pdb | map(attribute='connection_strings.pdb_default') | list | sort | lower }}"
+      when: filtered_dbnodes | length > 0
+
+    - name: "{{ act }} database(s) in SP"
+      oci_database_db_node_actions:
+        db_node_id: "{{ item }}"
+        action: "{{ act }}"
+        wait: no
+      loop: "{{ filtered_dbnodes | map(attribute='id') | list }}"
+      when: act in ['start', 'stop']
+
+    # Credentials ==========================================================================================
+    - name: "Get a database user(qa) in vault from SP"
+      oci_secrets_secret_bundle_facts:
+        secret_name: db_user_qa
+        vault_id: "{{ vault_id_sp }}"
+        stage: "CURRENT"
+      register: db_user_qa
+      when: act == "start"
+
+    - set_fact:
+        db_user: "{{ db_user_qa.secret_bundle.secret_bundle_content.content | b64decode }}"
+      when: act == "start"
+
+    - name: "Get a database password(qa) in vault from SP"
+      oci_secrets_secret_bundle_facts:
+        secret_name: db_pass_qa
+        vault_id: "{{ vault_id_sp }}"
+        stage: "CURRENT"
+      register: db_pass_qa
+      when: act == "start"
+
+    - set_fact:
+        db_pass: "{{ db_pass_qa.secret_bundle.secret_bundle_content.content | b64decode }}"
+      when: act == "start"
+
+    # Healthchecks ==========================================================================================
+    - name: "Wait for connection(s) on database node(s) in SP"
+      wait_for:
+        port: 1521
+        host: "{{ item }}"
+        state: started
+        delay: 20
+        timeout: 60
+      retries: 30
+      register: result_ips
+      loop: "{{ filtered_dbnodes | map(attribute='primary_private_ip') | list | sort | lower }}"
+      when: (act == "start") and (filtered_dbnodes | length > 0)
+      until: result_ips is succeeded
+      ignore_errors: true
+
+    - name: Check the response query in database node(s) on the SP
+      oracle_sql:
+        hostname: "{{ item[0] }}"
+        service_name: "{{ item[1] }}"
+        username: "{{ db_user }}"
+        password: "{{ db_pass }}"
+        mode: "normal"
+        sql: "select to_char(sysdate, 'dd-mon-yyyy hh:mi:ss') from dual"
+      delay: 10
+      retries: 30
+      register: result_query
+      with_together:
+        - "{{ filtered_dbnodes | map(attribute='primary_private_ip') | list | sort }}"
+        - "{{ filtered_pdb | map(attribute='connection_strings.pdb_default') | map('regex_replace', '^.*/') | lower }}"
+      when: (act == "start") and (filtered_dbnodes | length > 0)
+      until: result_query is succeeded
+      ignore_errors: true
+
+    - debug:
+        msg: "{{ item }}"
+      loop: "{{ result_query.results | map(attribute='data') | flatten }}"
+      when: (act == "start") and (filtered_dbnodes | length > 0)
+      ignore_errors: true
+
+    # Instances ==========================================================================================
+    - name: "List instance(s) that are {{ lookup('env', 'ANSIBLE_STATE_VM') }} in SP"
+      oci_compute_instance_facts:
+        compartment_id: "{{ compartment_id_sp }}"
+        lifecycle_state: "{{ lookup('env', 'ANSIBLE_STATE_VM') }}"
+      register: result_instances
+
+    - set_fact:
+        filtered_instances: "{{ result_instances.instances
+                              | selectattr(tag_grp, 'defined')
+                              | selectattr(tag_grp, 'in', lookup('env', 'ENVS')
+                              | default([]))
+                              | rejectattr(tag_grp, 'match', '^AnsibleUndefined$')
+                              | list }}"
+
+    - debug:
+        msg: "{{ filtered_instances | map(attribute='display_name') | list | sort | lower }}"
+      when: filtered_instances | length > 0
+
+    - name: "{{ act }} instance(s) in SP"
+      oci_compute_instance_actions:
+        instance_id: "{{ item }}"
+        action: "{{ act }}"
+        wait: no
+      loop: "{{ filtered_instances | map(attribute='id') | list }}"
+      when: act in ['start', 'stop']
+
+    # LoadBalancers ==========================================================================================
+    - name: "List load balancer(s) that are ACTIVE in SP"
+      oci_loadbalancer_load_balancer_facts:
+        compartment_id: "{{ compartment_id_sp }}"
+        lifecycle_state: "ACTIVE"
+      register: result_loadbalancers
+
+    - set_fact:
+        filtered_loadbalancers: "{{ result_loadbalancers.load_balancers
+                                  | selectattr(tag_grp, 'defined')
+                                  | selectattr(tag_grp, 'in', lookup('env', 'ENVS')
+                                  | default([]))
+                                  | rejectattr(tag_grp, 'match', '^AnsibleUndefined$')
+                                  | list }}"
+
+    - debug:
+        msg: "{{ filtered_loadbalancers | map(attribute='display_name') | list | sort | lower }}"
+      when: filtered_instances | length > 0
+
+    - name: "Update bandwidth(s) to {{ lookup('env', 'ANSIBLE_BANDWIDTH') }}Mbps in SP"
+      oci_loadbalancer_load_balancer:
+        compartment_id: "{{ compartment_id_sp }}"
+        display_name: "{{ item }}"
+        wait: no
+        state: present
+        shape_name: "flexible"
+        shape_details:
+          minimum_bandwidth_in_mbps: "{{ lookup('env', 'ANSIBLE_BANDWIDTH') }}"
+          maximum_bandwidth_in_mbps: "{{ lookup('env', 'ANSIBLE_BANDWIDTH') }}"
+      loop: "{{ filtered_loadbalancers | map(attribute='display_name') | list }}"
+      when: filtered_instances | length > 0

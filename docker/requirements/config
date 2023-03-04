@@ -1,0 +1,6 @@
+[DEFAULT]
+user=ocid1.user.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+fingerprint=xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx
+tenancy=ocid1.tenancy.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+region=xx-xxxxxxxx-x
+key_file=/root/.oci/oci_api_key.pem

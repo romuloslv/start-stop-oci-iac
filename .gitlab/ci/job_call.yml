@@ -1,0 +1,18 @@
+start-stop:
+  image: ${DOCKER_IMAGE}
+  stage: reload
+  before_script:
+    - cp ${TF_VAR_private_key_path} /root/.oci/oci_api_key.pem
+    - ANSIBLE_STATE_VM=${ANSIBLE_ACT:+$(test "$ANSIBLE_ACT" == "stop" && echo "RUNNING" || echo "STOPPED")}
+    - ANSIBLE_STATE_DB=${ANSIBLE_ACT:+$(test "$ANSIBLE_ACT" == "stop" && echo "AVAILABLE" || echo "STOPPED")}
+    - ANSIBLE_BANDWIDTH=${ANSIBLE_ACT:+$(test "$ANSIBLE_ACT" == "stop" && echo "10" || echo "200")}
+    - ENVS="${ANSIBLE_ENVS:-}"
+    - export ENVS ANSIBLE_STATE_VM ANSIBLE_STATE_DB ANSIBLE_BANDWIDTH
+    - echo "${ANSIBLE_ACT} resources in ${ANSIBLE_ENVS}"
+  script:
+    - ansible-playbook .gitlab/ansible/manager_resources.yml -e "act=${ANSIBLE_ACT}"
+  tags:
+    - your-runner
+  only:
+    refs:
+      - schedules
