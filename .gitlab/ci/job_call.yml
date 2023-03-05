@@ -10,7 +10,7 @@ start-stop:
     - export ENVS ANSIBLE_STATE_VM ANSIBLE_STATE_DB ANSIBLE_BANDWIDTH
     - echo "${ANSIBLE_ACT} resources in ${ANSIBLE_ENVS}"
   script:
-    - ansible-playbook .gitlab/ansible/manager_resources.yml -e "act=${ANSIBLE_ACT}"
+    - ansible-playbook .gitlab/_ansible/manager_resources.yml -e "act=${ANSIBLE_ACT}"
   tags:
     - your-runner
   only:
