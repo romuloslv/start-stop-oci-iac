@@ -8,10 +8,10 @@ resource "oci_kms_key" "master_key" {
   compartment_id      = var.compartment_ocid
   display_name        = "master_key"
   protection_mode     = "HSM"
-  management_endpoint = var.kms_endpoint
+  management_endpoint = oci_kms_vault.vault.management_endpoint
   key_shape {
     algorithm = "AES"
-    length    = 256
+    length    = 32
   }
 }
 

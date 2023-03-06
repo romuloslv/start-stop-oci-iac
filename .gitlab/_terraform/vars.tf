@@ -1,8 +1,10 @@
 variable "compartment_ocid" {}
 variable "ssh_private_key" {}
 variable "ssh_public_key" {}
-variable "kms_endpoint" {}
+variable "schedule_vars" {}
 variable "tenancy_ocid" {}
+variable "gitlab_token" {}
+variable "gitlab_list" {}
 variable "fingerprint" {}
 variable "user_ocid" {}
 variable "region" {}

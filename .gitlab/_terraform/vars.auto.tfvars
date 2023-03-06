@@ -1,8 +1,0 @@
-compartment_ocid = ""
-ssh_private_key  = ""
-ssh_public_key   = ""
-kms_endpoint     = ""
-tenancy_ocid     = ""
-fingerprint      = ""
-user_ocid        = ""
-region           = ""
