@@ -1,5 +1,5 @@
 data "gitlab_group" "parent_group" {
-  full_path = "iac-cloud-providers"
+  full_path = var.parent_group
 }
 
 resource "gitlab_group" "oracle_cloud" {

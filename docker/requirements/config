@@ -1,6 +1,6 @@
 [DEFAULT]
-user=ocid1.user.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-fingerprint=xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx
-tenancy=ocid1.tenancy.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-region=xx-xxxxxxxx-x
+user=changeme
+fingerprint=changeme
+tenancy=changeme
+region=changeme
 key_file=/root/.oci/oci_api_key.pem

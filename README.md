@@ -47,3 +47,34 @@ e.g: ANSIBLE_ENVS=@(dev|qa). Thus, the environments uat/stg will remain with the
 <br>
 
 `p.s: Configuration examples can be found in the image repository. For general information, access the INFO page of each root directory.`
+
+<br>
+
+# TL;DR
+
+* create a personal token  
+[more info here](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token)
+* create a parent group  
+[more info here](https://docs.gitlab.com/ee/user/group/manage.html#create-a-group)
+* create a docker image  
+[more info here](https://docs.docker.com/engine/reference/commandline/build/)
+
+Replace `changeme` with your information in:
+
+docker/requirements/config  
+.gitlab/_terraform/terraform.tfvars  
+.gitlab/_ansible/manager_resources.
+
+<br>
+
+Run terraform to upload the necessary infrastructure
+
+```
+$ terraform init
+$ terraform fmt
+$ terraform validate
+$ terraform plan
+$ terraform apply -auto-approve
+```
+
+Finally, fork this repo on github to your branch on gitlab.

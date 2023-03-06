@@ -12,7 +12,7 @@ start-stop:
   script:
     - ansible-playbook .gitlab/_ansible/manager_resources.yml -e "act=${ANSIBLE_ACT}"
   tags:
-    - your-runner
+    - ${RUNNER}
   only:
     refs:
       - schedules

@@ -3,6 +3,7 @@ variable "ssh_private_key" {}
 variable "ssh_public_key" {}
 variable "schedule_vars" {}
 variable "tenancy_ocid" {}
+variable "parent_group" {}
 variable "gitlab_token" {}
 variable "gitlab_list" {}
 variable "fingerprint" {}

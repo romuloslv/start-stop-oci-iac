@@ -5,9 +5,9 @@
     - community.general
     - ari_stark.ansible_oracle_modules
   vars:
-    father_compartment_id_sp: ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    compartment_id_sp: ocid1.compartment.oc1..xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    vault_id_sp: ocid1.vault.oc1.sa-saopaulo-1.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    father_compartment_id_sp: changeme
+    compartment_id_sp: changeme
+    vault_id_sp: changeme
   tasks:
     # Tags ==============================================================================================
     - name: List tag(s) namespace in SP

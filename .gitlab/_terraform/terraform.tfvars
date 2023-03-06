@@ -1,20 +1,25 @@
-compartment_ocid = ""
-ssh_private_key  = ""
-ssh_public_key   = ""
-tenancy_ocid     = ""
-fingerprint      = ""
-user_ocid        = ""
-region           = ""
-gitlab_token     = ""
+compartment_ocid = "changeme"
+ssh_private_key  = "changeme"
+ssh_public_key   = "changeme"
+gitlab_token     = "changeme"
+parent_group     = "changeme"
+tenancy_ocid     = "changeme"
+fingerprint      = "changeme"
+user_ocid        = "changeme"
+region           = "changeme"
 
 gitlab_list = [
   {
     key   = "DOCKER_IMAGE",
-    value = "yourdockerhubaccount/docker-img-oci:1.0"
+    value = "changeme"
   },
   {
     key   = "TF_VAR_private_key_path",
     value = "~/.oci/oci_api_key.pem"
+  },
+  {
+    key   = "RUNNER",
+    value = "changeme"
   }
 ]
 schedule_vars = [
