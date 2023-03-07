@@ -1,4 +1,4 @@
-start resources in @(dev|qa|uat|stg)
+stop resources in @(dev|qa|uat|stg)
 PLAY [localhost] ***************************************************************
 TASK [List tag(s) namespace in SP] *********************************************
 ok: [localhost]
