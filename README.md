@@ -1,13 +1,14 @@
-# start-stop-oci-iac
+<h1>start-stop-oci-iac</h1>
 <h3>Enables the management of oci resources</h3>
+
 <br>
 
 ## Prerequisites
 
 * Tag created at OCI
 * Vault created at OCI
-* Variables created in gitlab, schedules and config file
-* Tag the loadbalancer, dbsystem, instance type resources you want to manage
+* Variables, schedules, and configuration file created in Gitlab
+* Tag the loadbalancer, dbsystem, and instance type resources you want to manage
 
 ## Supported services
 
@@ -17,25 +18,25 @@
 
 <br>
 
-## Schedules actives on branch oracle_cloud
+## Schedule activities on the oracle_cloud branch
 
 Turn off resources | yourtenancyname | yourcompartmentname  
 Turn on resources | yourtenancyname | yourcompartmentname
 
-## Available variables on schedules
+## Available variables for schedules
 
 ANSIBLE_ENVS ->>
-The value of the ANSIBLE_ENVS variable contains the environments where the resources will be modified.  
-e.g: ANSIBLE_ENVS=@(dev|qa). Will modify resources in these environments.
+The value of the ANSIBLE_ENVS variable contains the environments where the resources should be changed.  
+for example: ANSIBLE_ENVS=@(dev|qa). The resources will be changed in these environments.
 
-ANSIBLE_ACT ->>
+ANSIBLE_ ACT - > >
 The value of the ANSIBLE_ACT variable contains the action to be performed.  
-e.g: ANSIBLE_ACT=stop. Will modify the status of resources in these environments.
+e.g.: ANSIBLE_ACT=stop. Changes the status of the resources in these environments.
 
-Changes must be replicated between active schedules.
+The changes must be replicated between active schedules.
 
-e.g: ANSIBLE_ENVS=@(dev|qa|uat|stg). Will modify(start/stop) resources in these environments.  
-e.g: ANSIBLE_ENVS=@(dev|qa). Thus, the environments uat/stg will remain with their status.
+e.g.: ANSIBLE_ENVS=@(dev|qa|uat|stg). Changes (starts/stops) resources in these environments.  
+e.g.: ANSIBLE_ENVS=@(dev|qa). This keeps the environments uat/stg in their state.
 
 ## Default environments
 
@@ -46,20 +47,16 @@ e.g: ANSIBLE_ENVS=@(dev|qa). Thus, the environments uat/stg will remain with the
 
 <br>
 
-`p.s: Configuration examples can be found in the image repository. For general information, access the INFO page of each root directory.`
-
-<br>
-
-# TL;DR
+<h1>TL;DR</h1>
 
 * create a personal token  
 [more info here](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token)
 * create a parent group  
 [more info here](https://docs.gitlab.com/ee/user/group/manage.html#create-a-group)
-* create a docker image  
+* create a Docker image  
 [more info here](https://docs.docker.com/engine/reference/commandline/build/)
 
-Replace `changeme` with your information in:
+Replace 'changeme' with your information in:
 
 docker/requirements/config  
 .gitlab/_terraform/terraform.tfvars  
@@ -67,7 +64,7 @@ docker/requirements/config
 
 <br>
 
-Run terraform to upload the necessary infrastructure
+Run Terraform to upload the required infrastructure
 
 ```
 $ terraform init
@@ -77,4 +74,7 @@ $ terraform plan
 $ terraform apply -auto-approve
 ```
 
-Finally, fork this repo on github to your branch on gitlab.
+<br>
+
+**Configuration examples can be found in the image repository, and general information can be found on the INFO page of the respective root directory.  
+Finally, fork this repository on github to your branch created in the gitlab repository. The marked environments will be activated at 07:50 and deactivated at 21:50 Brasilia local time.**
