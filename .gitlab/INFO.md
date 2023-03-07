@@ -6,13 +6,13 @@ To execute the orders, some variables must be defined in your project.
 
 In Gitlab
 
-DOCKER_ IMAGE: yourimagecreatetorunjob | e.g.: yourdockerhubaccount/docker-img-oci:1.0  
-TF_ VAR _private_key_path: yourprivatekey | e.g.: ----- BEGIN PRIVATE KEY -----...  
+DOCKER_IMAGE: yourimagecreatetorunjob | e.g.: yourdockerhubaccount/docker-img-oci:1.0  
+TF_VAR _private_key_path: yourprivatekey | e.g.: ----- BEGIN PRIVATE KEY -----...  
 [more info here](https://docs.gitlab.com/ee/ci/variables/#for-a-project)
 
 In schedule
 
-ANSIBLE_ ACT: youraction | e.g.: start/stop  
+ANSIBLE_ACT: youraction | e.g.: start/stop  
 ANSIBLE_ENVS : yourenvs | e.g.: dev/qa/uat/stg  
 [more info here](https://docs.gitlab.com/ee/ci/pipelines/schedules.html#add-a-pipeline-schedule)
 

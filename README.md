@@ -29,7 +29,7 @@ ANSIBLE_ENVS ->>
 The value of the ANSIBLE_ENVS variable contains the environments where the resources should be changed.  
 for example: ANSIBLE_ENVS=@(dev|qa). The resources will be changed in these environments.
 
-ANSIBLE_ ACT - > >
+ANSIBLE_ACT - > >
 The value of the ANSIBLE_ACT variable contains the action to be performed.  
 e.g.: ANSIBLE_ACT=stop. Changes the status of the resources in these environments.
 
