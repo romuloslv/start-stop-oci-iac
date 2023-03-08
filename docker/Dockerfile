@@ -19,9 +19,9 @@ ENV PATH="/root/bin:${PATH}" \
 WORKDIR /tmp/oci-cli
 
 RUN apt-get update && \
-    xargs -a /opt/tmp/apt.txt apt-get install -yqq --no-install-recommends && \
+    xargs -a /opt/tmp/_apt.txt apt-get install -yqq --no-install-recommends && \
     pip install -q --no-cache-dir --upgrade pip==23.0.1 && \
-    pip install -q --no-cache-dir -r /opt/tmp/pip.txt && \
+    pip install -q --no-cache-dir -r /opt/tmp/_pip.txt && \
     ansible-galaxy collection install -r /opt/tmp/galaxy.yml && \
     curl -sL ${INSTANT_CLIENT} -o /opt/tmp/instant-client.zip && \
     curl -sL ${TERRAFORM} -o /opt/tmp/terraform.zip && \
