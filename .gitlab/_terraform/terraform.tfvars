@@ -9,12 +9,12 @@ user_ocid        = "changeme"
 region           = "changeme"
 
 gitlab_list = [
-  { key   = "DOCKER_IMAGE", value = "changeme" },
-  { key   = "TF_VAR_private_key_path", value = "~/.oci/oci_api_key.pem" },
-  { key   = "RUNNER", value = "changeme" }
+  { key = "DOCKER_IMAGE", value = "changeme" },
+  { key = "TF_VAR_private_key_path", value = "~/.oci/oci_api_key.pem" },
+  { key = "RUNNER", value = "changeme" }
 ]
 schedule_vars = [
-  { key   = "ANSIBLE_ACT", value = "stop" },
-  { key   = "ANSIBLE_ACT", value = "start" },
-  { key   = "ANSIBLE_ENVS", value = "@(dev|qa|uat|stg)" }
+  { key = "ANSIBLE_ACT", value = "stop" },
+  { key = "ANSIBLE_ACT", value = "start" },
+  { key = "ANSIBLE_ENVS", value = "@(dev|qa|uat|stg)" }
 ]
