@@ -1,3 +1,4 @@
+variable "father_compartment_ocid" {}
 variable "compartment_ocid" {}
 variable "ssh_private_key" {}
 variable "ssh_public_key" {}

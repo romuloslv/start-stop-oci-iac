@@ -1,5 +1,5 @@
 resource "oci_identity_tag_namespace" "create_tag_namespace" {
-  compartment_id = var.compartment_ocid
+  compartment_id = var.father_compartment_ocid
   description    = "These are tags for the children of the your compartment"
   name           = "yourtag-oci"
   is_retired     = false
